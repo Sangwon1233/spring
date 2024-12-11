@@ -20,14 +20,13 @@ public class ProxyClient {
 
         ProxyFactory factory = new ProxyFactory();
         factory.setTarget(chicken);
-        factory.addAdvice(new Seasoning()); 
-        factory.addAdvice(new Sourcing()); 
+        factory.addAdvice(new Seasoning());
+        factory.addAdvice(new Sourcing());
         factory.addAdvice(new Packaging());
         
         Chicken chicken2 =(Chicken)factory.getProxy();
         log.info("===================================");
         chicken2.cook("파닭");
-
 
         factory = new ProxyFactory(bbq);
         factory.addAdvice(new Sourcing());
