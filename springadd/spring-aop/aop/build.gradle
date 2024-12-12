@@ -1,0 +1,51 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.1-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'site.mplace'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	
+	testImplementation 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+	
+	// https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
+	implementation 'org.aspectj:aspectjweaver:1.9.22.1'
+	runtimeOnly 'org.aspectj:aspectjweaver:1.9.22.1'
+
+	// https://mvnrepository.com/artifact/org.aspectj/aspectjrt
+	implementation 'org.aspectj:aspectjrt:1.9.22.1'
+	runtimeOnly 'org.aspectj:aspectjrt:1.9.22.1'
+
+}
+
+
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
