@@ -14,7 +14,7 @@ public class Member {
   private String email;
   private String road_addr;
   private String detail_addr;
-  private LocalDateTime regdate;
+  private LocalDateTime regDate;
 
   
 }

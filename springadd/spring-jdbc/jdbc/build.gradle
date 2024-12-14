@@ -33,7 +33,7 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 	testImplementation 'org.projectlombok:lombok'
-  testAnnotationProcessor 'org.projectlombok:lombok'
+  	testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {
