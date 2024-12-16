@@ -10,7 +10,7 @@
         <jsp:include page="../common/header.jsp" />
         <main class="container">
             <h1 class="text-center mt-5">회원 가입</h1>
-            <form name = "frm"class="mx-auto col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 col-xxl-3 card p-2 mt-5" method="post">
+            <form name = "frm" class="mx-auto col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 col-xxl-3 card p-2 mt-5" method="post">
                 <input type="text" class="form-control my-3" id="id" placeholder="아이디" name="id">
                 <input type="password" class="form-control my-3" id="pw" placeholder="비밀번호" name="pw">
                 <input type="text" class="form-control my-3" id="name" placeholder="이름" name="name">

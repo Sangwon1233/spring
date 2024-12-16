@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class PageDto {
 	
-	private Criteria criteria = new Criteria();
+	private Criteria cri = new Criteria();
 	private int total = 123; // 게시글 총량
 	private int startPage; // 페이지 버튼 시작 번
 	private int endPage; // 페이지 버튼 종료 번호
@@ -16,8 +16,8 @@ public class PageDto {
 	// 이전 이후 계산용 필드
 	private boolean prev; 
 	private boolean next;
-	private boolean dblPrev;
-	private boolean dblNext;
+	private boolean doublePrev;
+	private boolean doubleNext;
 	
 	
 	public PageDto(int total) {
@@ -29,7 +29,7 @@ public class PageDto {
 	}
 	
 	public PageDto(Criteria criteria, int total, int pageCount) {
-		this.criteria = criteria;
+		this.cri = criteria;
 		this.total = total;
 		this.pageCount = pageCount;
 		
@@ -46,19 +46,13 @@ public class PageDto {
 		
 		prev = criteria.getPage() > 1 ;
 		next = criteria.getPage() < realEnd;
-		dblPrev = startPage > 1;
-		dblNext = endPage < realEnd;
+		doublePrev = startPage > 1;
+		doubleNext = endPage < realEnd;
 	}
 	
 	public static void main(String[] args) {
 		PageDto dto = new PageDto(255);
 		System.out.println(dto);
-	}
-
-	@Override
-	public String toString() {
-		return "PageDto [criteria=" + criteria + ", total=" + total + ", startPage=" + startPage + ", endPage="
-				+ endPage + ", HiddenPage=" + HiddenPage + "]";
 	}
 
 	
