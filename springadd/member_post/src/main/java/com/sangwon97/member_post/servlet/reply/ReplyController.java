@@ -1,4 +1,4 @@
-package com.sangwon97.member_post.servlet.reply;
+// package com.sangwon97.member_post.servlet.reply;
 
 // import java.io.IOException;
 // import java.util.Arrays;
@@ -12,10 +12,9 @@ package com.sangwon97.member_post.servlet.reply;
 // import com.google.gson.Gson;
 // import com.google.gson.GsonBuilder;
 
-// import com.kcanmin.member_post.dto.ReplyCri;
-// import service.ReplyServceImpl;
-// import service.ReplyService;
-// import com.kcanmin.member_post.vo.Reply;
+// import com.sangwon97.member_post.dto.ReplyCri;
+// import com.sangwon97.member_post.service.ReplyService;
+// import com.sangwon97.member_post.vo.Reply;
 
 // @WebServlet("/reply/*")
 // public class ReplyController extends HttpServlet{

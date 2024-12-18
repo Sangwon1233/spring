@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
@@ -16,6 +17,7 @@ public class Post {
 	private String writer; // 게시글 작성자
 	private String content; // 게시글 내용
 	private Long viewCount; // 게시글 조회수
+	@DateTimeFormat(pattern = "yyyy-HH-dd") //개별 확인 벨류가없어서 pattern 사용
 	private Date regdate; // 게시글 등록일
 	private Date updatedate;
 	private Integer cno;

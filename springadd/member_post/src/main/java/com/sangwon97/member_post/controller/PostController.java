@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sangwon97.member_post.dto.Criteria;
-import com.sangwon97.member_post.dto.PageDto;
+
 import com.sangwon97.member_post.service.PostService;
 import com.sangwon97.member_post.vo.Post;
 
@@ -29,7 +29,7 @@ public class PostController {
   @GetMapping("list")
   public void list(Criteria cri, Model model) {
     model.addAttribute("posts", service.list(cri));
-    model.addAttribute("pageDto", new PageDto(cri, service.count(cri))); // 복습 요망
+    // model.addAttribute("pageDto", new PageDto(cri, service.count(cri))); // 복습 요망
         // model.addAttribute("pageDto", new PageDto(cri, service.count(cri))); // 복습 요망
   }
 

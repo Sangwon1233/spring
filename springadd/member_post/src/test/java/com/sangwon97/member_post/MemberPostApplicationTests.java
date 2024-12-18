@@ -1,4 +1,4 @@
-package com.sangwon97;
+package com.sangwon97.member_post;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

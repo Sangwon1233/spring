@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Builder
 public class Criteria extends HttpServlet{
 	private int page = 1; // 시작 페이지 
@@ -61,7 +60,7 @@ public class Criteria extends HttpServlet{
 	
 	// QueryStyring Generator (will be used at el)
 	public static void main(String[] args) {
-		System.out.println(new Criteria().getQs());
+		// System.out.println(new Criteria().getQs());
 	}
 	
 	// Page Include
@@ -88,5 +87,9 @@ public class Criteria extends HttpServlet{
 	
 	public String[] getTypeArr() {
 		return type.split("");
+	}
+
+	public Criteria() {
+		//TODO Auto-generated constructor stub
 	}
 }

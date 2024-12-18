@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class PageDto {
 	
-	private Criteria cri = new Criteria();
+	private Criteria cri;
 	private int total = 123; // 게시글 총량
 	private int startPage; // 페이지 버튼 시작 번
 	private int endPage; // 페이지 버튼 종료 번호

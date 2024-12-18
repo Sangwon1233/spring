@@ -1,7 +1,10 @@
 // const replyService =  {};
 const  replyService = (function() {// 함수내부에서 결과 관리 위에랑 같은것
     const url = "/reply";
-    
+		$.ajaxSetup({
+			// dataType: "json", // 모든 ajax 요청의 기본 dataType을 JSON으로 설정
+			contentType : 'application/json; charset=utf-8'
+		});  
     function write(reply , callback){
         console.log(reply);
 		//relpy

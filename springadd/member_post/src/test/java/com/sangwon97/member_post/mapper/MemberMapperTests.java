@@ -1,4 +1,4 @@
-package com.sangwon97.mapper;
+package com.sangwon97.member_post.mapper;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
