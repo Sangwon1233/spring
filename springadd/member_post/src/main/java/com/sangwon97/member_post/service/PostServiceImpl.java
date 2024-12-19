@@ -2,7 +2,6 @@ package com.sangwon97.member_post.service;
 
 import java.util.List;
 
-// import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,14 +9,15 @@ import com.sangwon97.member_post.dto.Criteria;
 import com.sangwon97.member_post.mapper.AttachMapper;
 import com.sangwon97.member_post.mapper.PostMapper;
 import com.sangwon97.member_post.mapper.ReplyMapper;
-// import com.kcanmin.member_post.utils.MybatisInIt;
 import com.sangwon97.member_post.vo.Post;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 @Service
 @Transactional
 @AllArgsConstructor
+@Log4j2
 public class PostServiceImpl implements PostService{
 
 	private PostMapper postMapper;
@@ -26,14 +26,17 @@ public class PostServiceImpl implements PostService{
 
 	
 	@Override
-	public int write(Post post){
-			postMapper.insert(post);
-			post.getAttachs().forEach(a->{
+	public int write(Post post) {
+		postMapper.write(post);
+		log.info(post);
+		post.getAttachs().forEach(a -> {
 				a.setPno(post.getPno());
 				attachMapper.insert(a);
-			});
-			return 0;
-		}
+		});
+
+		return 0;
+
+}
 	
 	@Override
 	public int modify(Post post) {

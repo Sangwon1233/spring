@@ -64,8 +64,16 @@ implementation 'org.springframework.boot:spring-boot-starter-log4j2'
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
 implementation 'org.springframework.boot:spring-boot-devtools:3.4.0'
 
+// https://mvnrepository.com/artifact/org.aspectj/aspectjrt
+implementation group: 'org.aspectj', name: 'aspectjrt', version: '1.9.22.1'
+// https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
+implementation group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.22.1'
+
 // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
 implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+
+// https://mvnrepository.com/artifact/net.coobird/thumbnailator
+implementation 'net.coobird:thumbnailator:0.4.20'
 
 }
 

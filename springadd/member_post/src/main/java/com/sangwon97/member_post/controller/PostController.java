@@ -4,18 +4,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.sangwon97.member_post.dto.Criteria;
-
-import com.sangwon97.member_post.service.PostService;
-import com.sangwon97.member_post.vo.Post;
-
-import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
-
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import com.sangwon97.member_post.aop.annotation.MyPost;
+import com.sangwon97.member_post.aop.annotation.SigninCheck;
+import com.sangwon97.member_post.dto.Criteria;
+import com.sangwon97.member_post.dto.PageDto;
+import com.sangwon97.member_post.exception.UnsignedAuthException;
+import com.sangwon97.member_post.service.PostService;
+import com.sangwon97.member_post.vo.Member;
+import com.sangwon97.member_post.vo.Post;
+
+import jakarta.servlet.http.HttpSession;
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
+
 
 
 @Controller
@@ -24,31 +31,69 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Log4j2
 public class PostController {
   private PostService service;
-  // private PostCategoryService CategoryService;
-  
+
+  // // 예시
+  // @GetMapping("list")
+  // public String list(Criteria cri, Model model ) {
+  //   model.addAttribute("posts", service.list(cri));
+  //   model.addAttribute("pageDto", new PageDto(cri, service.count(cri)));
+  //   return "forward:post/list";
+  // }
+  // 위에 코드가 이거랑 같음
   @GetMapping("list")
-  public void list(Criteria cri, Model model) {
+  public void list(Criteria cri, Model model ) {
     model.addAttribute("posts", service.list(cri));
-    // model.addAttribute("pageDto", new PageDto(cri, service.count(cri))); // 복습 요망
-        // model.addAttribute("pageDto", new PageDto(cri, service.count(cri))); // 복습 요망
+    model.addAttribute("pageDto", new PageDto(cri, service.count(cri)));
   }
+  
 
   @GetMapping("view")
-    public void view(@ModelAttribute("cri") Criteria cri, @RequestParam("pno") Long pno, Model model) { // @ModelAttribute 어트리뷰트 옆의 괄호에다가 이름을 바인딩해줄 경우에 문제없어짐.
-    model.addAttribute("post", service.view(pno));
+  public void view(@ModelAttribute("cri") Criteria cri, Long pno, Model model){
+    model.addAttribute("post",service.view(pno));
   }
-  @GetMapping("write")
-  public void write(@ModelAttribute ("cri") Criteria cri){}
 
+  @GetMapping("write")
+  @SigninCheck
+  public void write(@ModelAttribute("cri") Criteria cri) { }
+  
   @PostMapping("write")
-  public String postWrite(Post post, Criteria cri){
+  public String postWrite(Post post, Criteria cri) { 
     post.setCno(cri.getCategory());
-    service.write(post);
-      // return "list?";
-     return "redirect:list?" + cri.getQs2();
+    // service.write(post);
+    log.info(post);
+    return "redirect:list?" + cri.getQs2();
+
   }
   
+  @GetMapping("modify")
+  @SigninCheck
+  public void modify(@RequestParam("pno") Long pno, Model model, Criteria cri,
+   HttpSession session, @SessionAttribute(name = "member",required = false)  Member member, String writer) {
+      Post post = service.findBy(pno);
+     
+      if(member == null || !member.getId().equals(post.getWriter())){
+        throw new UnsignedAuthException("동일하지 않은 혹은 비로그인");
+      }
+    
+    model.addAttribute("post", post);
+  }
   
+
+
+
+
+  @PostMapping("modify")
+  @SigninCheck @MyPost
+  public String postModify(Post post, Criteria cri) {
+    service.modify(post);
+    return "redirect:list?" + cri.getQs();
+  }
+
+  @RequestMapping("remove")
+  public String remove(@RequestParam("pno") Long pno, Criteria cri) {
+    service.remove(pno); 
+    return "redirect:list?" + cri.getQs();
+  }
 
 
 }
