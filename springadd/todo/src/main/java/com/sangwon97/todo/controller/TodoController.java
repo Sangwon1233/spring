@@ -12,6 +12,7 @@ import lombok.extern.log4j.Log4j2;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 // @Controller
@@ -38,6 +39,18 @@ public class TodoController {
       log.info(dto);
       service.wirte(dto);
       return "redirect:todos";
+  }
+  @RequestMapping("todos/remove")
+  public String remove(Long id) {
+      log.info(id);
+      service.remove(id);
+      return "redirect:/todos";
+  }
+  @RequestMapping("todos/modify")
+  public String modify(Long id) {
+      log.info(id);
+      service.modify(id);
+      return "redirect:/todos";
   }
   
 }
