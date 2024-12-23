@@ -25,5 +25,5 @@ public class TodoEntity {
   private String task;//해야할일
   private boolean done;//했냐 안했냐
 
-
+  
 }

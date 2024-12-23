@@ -50,6 +50,7 @@ public class TodoController {
   public String modify(Long id) {
       log.info(id);
       service.modify(id);
+      
       return "redirect:/todos";
   }
   
