@@ -5,10 +5,12 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.sangwon97.guestbook.domain.dto.GuestbookDto;
 import com.sangwon97.guestbook.domain.dto.GuestbookListDTO;
 import com.sangwon97.guestbook.domain.dto.GuestbookModifyDTO;
 import com.sangwon97.guestbook.domain.dto.GuestbookViewDTO;
 import com.sangwon97.guestbook.domain.dto.GuestbookWriteDTO;
+import com.sangwon97.guestbook.domain.entity.Guestbook;
 import com.sangwon97.guestbook.domain.entity.GuestbookEntity;
 import com.sangwon97.guestbook.repository.GuestbookRepository;
 
@@ -18,13 +20,14 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class GuestbookServiceImpl implements GuestbookService {
     private GuestbookRepository repository; //레포지토리 가져오기
+    
 
     public List<GuestbookListDTO> list(){
         return repository.findAll().stream().map(GuestbookListDTO :: new).toList();
     };
     @Override
     public GuestbookViewDTO get(Long gno){
-        Optional<GuestbookEntity> opt = repository.findById(gno);
+        Optional<Guestbook> opt = repository.findById(gno);
         if(!opt.isPresent()){
             return null;
         }
@@ -34,10 +37,10 @@ public class GuestbookServiceImpl implements GuestbookService {
         // 가져오는 애가 옵셔널이면 처음부터 생성자를 optional로 하면 된다
     }
 
-    @Override
-    public void writer(GuestbookWriteDTO dto){
-        repository.save(dto.toEntity());
-    }
+    // @Override
+    // public Long writer(GuestbookWriteDTO dto){
+    //     repository.save(dto.toEntity());
+    // }
     @Override
     public void modify(GuestbookModifyDTO dto){
         repository.save(dto.toEntity());
@@ -46,6 +49,15 @@ public class GuestbookServiceImpl implements GuestbookService {
     public void remove(Long gno){
         repository.deleteById(gno);
     }
+    @Override
+    public Long writer(GuestbookDto dto){
+        Guestbook guestbook = toEntity(dto);
+        log.info(guestbook);
+        repository.save(guestbook);
+        log.info(guestbook);
+        return guestbook.getGno();
+    }
+
     // @Transactional
   // public void modify(Long id){
 	// 	Optional<GuestbookEntitiy> gbe = repository.findById(id);

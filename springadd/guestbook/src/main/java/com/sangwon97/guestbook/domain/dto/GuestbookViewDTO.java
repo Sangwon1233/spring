@@ -2,6 +2,7 @@ package com.sangwon97.guestbook.domain.dto;
 
 import java.time.LocalDateTime;
 
+import com.sangwon97.guestbook.domain.entity.Guestbook;
 import com.sangwon97.guestbook.domain.entity.GuestbookEntity;
 
 import lombok.AllArgsConstructor;
@@ -24,7 +25,7 @@ public class GuestbookViewDTO {
     private LocalDateTime regDate;
     private LocalDateTime modDate;
 
-    public GuestbookViewDTO(GuestbookEntity entity){
+    public GuestbookViewDTO(Guestbook entity){
         this.gno = entity.getGno();
         this.title = entity.getTitle();
         this.writer = entity.getWriter();

@@ -1,5 +1,6 @@
 package com.sangwon97.guestbook.domain.dto;
 
+import com.sangwon97.guestbook.domain.entity.Guestbook;
 import com.sangwon97.guestbook.domain.entity.GuestbookEntity;
 
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ public class GuestbookModifyDTO {
     private String content;
     private String writer;
 
-    public GuestbookEntity toEntity(){
-        return new GuestbookEntity().builder().gno(gno).title(title).content(content).writer(writer).build();
+    public Guestbook toEntity(){
+        return new Guestbook().builder().gno(gno).title(title).content(content).writer(writer).build();
     }
 }
