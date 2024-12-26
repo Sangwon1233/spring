@@ -22,6 +22,6 @@ spring:
       - scr/main/resources
       - templates
 
-server:
-  servlet:
-    context-path: /guestbook
+# server:
+#   servlet:
+#     context-path: /guestbook

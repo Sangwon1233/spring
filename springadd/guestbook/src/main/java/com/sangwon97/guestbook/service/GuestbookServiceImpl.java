@@ -1,17 +1,20 @@
 package com.sangwon97.guestbook.service;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.sangwon97.guestbook.domain.dto.GuestbookDto;
-import com.sangwon97.guestbook.domain.dto.GuestbookListDTO;
 import com.sangwon97.guestbook.domain.dto.GuestbookModifyDTO;
 import com.sangwon97.guestbook.domain.dto.GuestbookViewDTO;
-import com.sangwon97.guestbook.domain.dto.GuestbookWriteDTO;
+import com.sangwon97.guestbook.domain.dto.PageRequestDto;
+import com.sangwon97.guestbook.domain.dto.PageResultDto;
 import com.sangwon97.guestbook.domain.entity.Guestbook;
-import com.sangwon97.guestbook.domain.entity.GuestbookEntity;
 import com.sangwon97.guestbook.repository.GuestbookRepository;
 
 import lombok.extern.log4j.Log4j2;
@@ -22,9 +25,9 @@ public class GuestbookServiceImpl implements GuestbookService {
     private GuestbookRepository repository; //레포지토리 가져오기
     
 
-    public List<GuestbookListDTO> list(){
-        return repository.findAll().stream().map(GuestbookListDTO :: new).toList();
-    };
+    // public List<GuestbookListDTO> list(){
+    //     return repository.findAll().stream().map(GuestbookListDTO :: new).toList();
+    // };
     @Override
     public GuestbookViewDTO get(Long gno){
         Optional<Guestbook> opt = repository.findById(gno);
@@ -57,6 +60,17 @@ public class GuestbookServiceImpl implements GuestbookService {
         log.info(guestbook);
         return guestbook.getGno();
     }
+
+    @Override
+    public PageResultDto<GuestbookDto,Guestbook> list(PageRequestDto dto) {
+        Pageable Pageable = dto.getPageable(Sort.by(Direction.DESC, "gno"));
+        Page<Guestbook> page = repository.findAll(Pageable);
+        // Function<Guestbook, GuestbookDto> fn = e -> toDto(e);
+        PageResultDto<GuestbookDto,Guestbook> resultDto= new PageResultDto<>(page,e -> toDto(e));
+        return resultDto;
+    }
+    
+    
 
     // @Transactional
   // public void modify(Long id){
