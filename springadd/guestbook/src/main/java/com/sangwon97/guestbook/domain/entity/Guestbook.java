@@ -17,7 +17,7 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(callSuper = true)
 @Table(name = "tbl_guestbook")
 public class Guestbook extends BaseEntity{
     @Id

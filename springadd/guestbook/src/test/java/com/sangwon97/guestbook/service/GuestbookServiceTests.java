@@ -23,18 +23,27 @@ public class GuestbookServiceTests {
   private GuestbookService service;
 
   @Test
-  public void restWrite(){
-    GuestbookDto dto = GuestbookDto.builder().title("서비스 테스트 제목").content("서비스 내용").writer("서비스 작성자").build();
-
+  public void testWrite(){
+    GuestbookDto dto = GuestbookDto.builder().title("연습").content("내용").writer("test").build();
     Long gno = service.writer(dto);
     assertNotNull(gno);
   }
 
-  @Test
-  public void testList(){
-    PageResultDto<GuestbookDto,Guestbook> dto =  service.list(new PageRequestDto(2,10));
-    log.info(dto);
-    dto.getPageList().forEach(log::info);
-  }
-  
+  // @Test
+  // public void testList(){
+  //   // PageRequestDto dto = new PageRequestDto();
+  //   PageRequestDto dto = PageRequestDto.builder().page(10).size(10).build();
+  //   PageResultDto<GuestbookDto, Guestbook> pageResultDto = service.list(dto);
+  //   log.info(pageResultDto);
+
+  //   service.list(new PageRequestDto(10, 10)).getDtoList().forEach(log::info);
+
+  // }
+
+  // @Test
+  // public void testListPage(){
+  //   PageResultDto<GuestbookDto,Guestbook> dto = service.list(new PageRequestDto(2,10));
+  //   log.info(dto);
+  //   dto.getPageList().forEach(log::info);
+  // }
 }

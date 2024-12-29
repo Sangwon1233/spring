@@ -3,7 +3,6 @@ package com.sangwon97.guestbook.domain.dto;
 import java.time.LocalDateTime;
 
 import com.sangwon97.guestbook.domain.entity.Guestbook;
-import com.sangwon97.guestbook.domain.entity.GuestbookEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

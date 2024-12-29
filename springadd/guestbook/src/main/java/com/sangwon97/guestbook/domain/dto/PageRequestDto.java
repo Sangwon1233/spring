@@ -13,8 +13,8 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class PageRequestDto {
-  private int page;
-  private int size;
+  private int page, size;
+  private String type, keyword;
   
   public PageRequestDto(){
     page = 1;

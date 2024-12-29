@@ -10,10 +10,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
+import lombok.ToString;
 
 @MappedSuperclass //이 클래스가 모든 클래스의 조상
 @EntityListeners(value = AuditingEntityListener.class)//어플리케이션 시작(메인)
 @Getter
+@ToString
 public class BaseEntity {
     
     @CreatedDate
