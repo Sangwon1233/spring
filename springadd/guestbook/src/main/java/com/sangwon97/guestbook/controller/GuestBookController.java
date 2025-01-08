@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @Log4j2
 @RequestMapping("guestbook")
-public class GuestbookController {
+public class GuestBookController {
     @javax.inject.Inject //AutoWired랑 같은데 동작 순서만 다름
     private GuestbookService service;
 
