@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.sangwon97.club.security.dto.handler.LoginSuccessHandler;
+import com.sangwon97.club.security.handler.LoginSuccessHandler;
 
 import lombok.extern.log4j.Log4j2;
 
