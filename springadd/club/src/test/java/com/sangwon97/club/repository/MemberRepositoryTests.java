@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.annotation.Rollback;
 
 import com.sangwon97.club.entity.Member;
 import com.sangwon97.club.entity.MemberRole;
@@ -20,20 +21,25 @@ public class MemberRepositoryTests {
   private PasswordEncoder encoder;
 
   @Test
-  public void testInsert(){
-
+  @Rollback(false)
+  public void testInsert() {
     IntStream.rangeClosed(1, 100).forEach(i -> {
-      Member member = Member.builder().email("user"+i +"@sangwon97 "+ i + ".com").name("USER" + i).password(encoder.encode("1234")).build();
-      member.addMemberRole(MemberRole.USER);
+      Member m = Member.builder()
+      .email("user" + i + "@sangwon.com")
+      .name("사용자" + i)
+      .password(encoder.encode("1234"))
+      .build();
+
+      m.addMemberRole(MemberRole.USER);
 
       if(i > 80) {
-        member.addMemberRole(MemberRole.MANAGER);
+        m.addMemberRole(MemberRole.MANAGER);
       }
-      if(i > 90){
-        member.addMemberRole(MemberRole.ADMIN);
+      if(i > 90) {
+        m.addMemberRole(MemberRole.ADMIN);
       }
 
-      repository.save(member);
+      repository.save(m);
     });
   }
   

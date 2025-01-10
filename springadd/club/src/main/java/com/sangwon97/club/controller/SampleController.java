@@ -11,7 +11,6 @@ import com.sangwon97.club.security.dto.AuthMemberDTO;
 
 import lombok.extern.log4j.Log4j2;
 
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
