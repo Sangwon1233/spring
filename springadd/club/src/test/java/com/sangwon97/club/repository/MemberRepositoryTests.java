@@ -11,6 +11,8 @@ import org.springframework.test.annotation.Rollback;
 import com.sangwon97.club.entity.Member;
 import com.sangwon97.club.entity.MemberRole;
 
+import jakarta.transaction.Transactional;
+
 @SpringBootTest
 public class MemberRepositoryTests {
 
@@ -22,11 +24,13 @@ public class MemberRepositoryTests {
 
   @Test
   @Rollback(false)
+  @Transactional
   public void testInsert() {
+
     IntStream.rangeClosed(1, 100).forEach(i -> {
       Member m = Member.builder()
       .email("user" + i + "@sangwon.com")
-      .name("사용자" + i)
+      .name("user" + i)
       .password(encoder.encode("1234"))
       .build();
 

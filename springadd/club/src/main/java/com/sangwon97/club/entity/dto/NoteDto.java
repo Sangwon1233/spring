@@ -2,6 +2,8 @@ package com.sangwon97.club.entity.dto;
 
 import java.time.LocalDateTime;
 
+import com.sangwon97.club.entity.Note;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

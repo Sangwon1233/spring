@@ -64,12 +64,13 @@ public class NoteServiceImpl implements NoteService {
         }
     }
 
+    
     @Override
     public List<NoteDto> getAllWithwriter(String writerEmail) {
-        List<Note> noteList = noteRepository.getAllWithWriter(writerEmail);
-
-        return noteList.stream().map(note -> entityToDTO(note)).collect(Collectors.toList());
+      List<Note> noteList = noteRepository.findByMemberEmail(writerEmail);
+      return noteList.stream().map(note -> entityToDTO(note)).collect(Collectors.toList());
     }
+
 }
   
 

@@ -15,7 +15,6 @@ import lombok.extern.log4j.Log4j2;
 
 @SpringBootTest
 @Log4j2
-@Transactional
 public class NoteRepositoryTests {
   @Autowired
   private NoteRepository repository;
@@ -28,18 +27,19 @@ public class NoteRepositoryTests {
   public void testOne(){
     log.info(repository.findByNum(1L));
   }
-  @Test
-  @Rollback(false)
-  public void testSave(){
-    // LongStream.rangeClosed(1, 5).boxed().map(l-> 
-    //   Note.builder()
-    //   .title("제목"+l)
-    //   .content("내용"+l)
-    //   .member(Member.builder()
-    //   .mno(100L)
-    //   .build()
-    //   ).build()).forEach(repository::save);
-  }
+  // @Test
+  // @Rollback(false)
+  // public void testSave(){
+  //   LongStream.rangeClosed(1, 5).boxed().map(l-> 
+  //     Note.builder()
+  //     .title("제목"+l)
+  //     .content("내용"+l)
+  //     .member(Member.builder()
+  //     .mno(100L)
+  //     .build()
+  //     ).build()).forEach(repository::save);
+  // }
+
   @Test
   public void testList(){
     repository.findByMemberMno(100L).forEach(log::info);

@@ -1,4 +1,4 @@
-package com.sangwon97.club.service;
+package com.sangwon97.club.security.service;
 
 import java.util.Map;
 
