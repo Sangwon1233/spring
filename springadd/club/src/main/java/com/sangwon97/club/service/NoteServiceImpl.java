@@ -71,6 +71,24 @@ public class NoteServiceImpl implements NoteService {
       return noteList.stream().map(note -> entityToDTO(note)).collect(Collectors.toList());
     }
 
+    @Override
+    public List<NoteDto> listAll() {
+      return repository.findAll().stream().map(this::entityToDTO).toList();
+    }
+
+    @Override
+    public List<NoteDto> listByEmail(String email) {
+      // TODO Auto-generated method stub
+      return null;
+    }
+
+    @Override
+    public List<NoteDto> listByMno(Long mno) {
+      // TODO Auto-generated method stub
+      return null;
+    }
+    
+
 }
   
 

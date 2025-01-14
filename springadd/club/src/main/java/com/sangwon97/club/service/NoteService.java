@@ -23,6 +23,10 @@ public interface NoteService{
 
   List<NoteDto> getAllWithwriter(String writerEmail);
 
+  List<NoteDto> listByEmail(String email);
+  List<NoteDto> listByMno(Long mno);
+  List<NoteDto> listAll();
+
   default Note dtoToEntity(NoteDto noteDto){
     Note note = Note.builder()
       .num(noteDto.getNum())
@@ -45,6 +49,7 @@ public interface NoteService{
 
     return noteDTO;
 }
+
 
 }
 

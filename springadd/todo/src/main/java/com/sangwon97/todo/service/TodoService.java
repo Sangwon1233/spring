@@ -10,8 +10,6 @@ import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import com.sangwon97.todo.domain.TodoEntity;
-import com.sangwon97.todo.dto.TodoListDto;
-import com.sangwon97.todo.dto.TodoWirteDto;
 import com.sangwon97.todo.repository.TodoRepository;
 
 import jakarta.annotation.PostConstruct;

@@ -2,7 +2,6 @@ package com.sangwon97.club.security.filter;
 
 import java.io.IOException;
 
-import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
