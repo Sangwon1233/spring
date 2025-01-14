@@ -43,7 +43,11 @@ server:
     encoding:
       force: true
     # context-path: /guestbook
+<<<<<<< HEAD
     spring:
+=======
+  spring:
+>>>>>>> f3f9c8dd1a6e430bce3bdc2aff83decec2cc1655
     security:
       oauth2:
         client:
