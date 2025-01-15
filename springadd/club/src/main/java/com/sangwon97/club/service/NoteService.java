@@ -1,6 +1,7 @@
 package com.sangwon97.club.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ import jakarta.transaction.Transactional;
 public interface NoteService{
   Long register(NoteDto noteDto);
 
-  NoteDto get(Long num);
+  Optional<NoteDto> get(Long num);
 
   void modify(NoteDto noteDto);
   

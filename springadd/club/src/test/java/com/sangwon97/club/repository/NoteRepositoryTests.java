@@ -28,18 +28,7 @@ public class NoteRepositoryTests {
   }
   @Test
   @Rollback(false)
-<<<<<<< HEAD
 
-  public void testSave(){
-    LongStream.rangeClosed(1, 5).boxed().map(l-> 
-      Note.builder()
-      .title("제목"+l)
-      .content("내용"+l)
-      .member(Member.builder()
-      .mno(100L)
-      .build()
-      ).build()).forEach(repository::save);
-=======
   public void testSave(){
     LongStream.rangeClosed(1, 5)
     .boxed()
@@ -53,9 +42,7 @@ public class NoteRepositoryTests {
       .build();
     })
     .forEach(repository::save);
->>>>>>> f3f9c8dd1a6e430bce3bdc2aff83decec2cc1655
   }
-
   @Test
   public void testList(){
     repository.findByMemberMno(100L).forEach(log::info);

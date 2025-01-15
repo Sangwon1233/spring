@@ -17,12 +17,17 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import software.amazon.awssdk.regions.Region;  // AWS SDK 2.x의 Region 클래스를 import
+import software.amazon.awssdk.services.s3.S3Client;
+
 
 import com.sangwon97.club.security.filter.ApiCheckFilter;
 import com.sangwon97.club.security.filter.ApiLoginFilter;
 import com.sangwon97.club.security.handler.ApiLoginFailHandler;
 import com.sangwon97.club.security.handler.LoginSuccessHandler;
 import com.sangwon97.club.security.util.JWTUtil;
+
+import software.amazon.awssdk.services.s3.S3Client;
 
 
 @Configuration
@@ -112,8 +117,14 @@ public class SecurityConfig {
     return http.build();
   }
 
-  @Bean
-  public LoginSuccessHandler loginSuccessHandler() {
-    return new LoginSuccessHandler(passwordEncoder());
-  }
-}
+    @Bean
+    public LoginSuccessHandler loginSuccessHandler() {
+      return new LoginSuccessHandler(passwordEncoder());
+    }
+    @Bean
+    public S3Client s3Client() {
+        return S3Client.builder()
+        .region(Region.of("us-west-2"))  // 사용하고자 하는 AWS 리전으로 수정
+        .build();
+    }
+} 

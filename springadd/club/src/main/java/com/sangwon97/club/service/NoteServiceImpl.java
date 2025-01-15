@@ -33,13 +33,13 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public NoteDto get(Long num) {
-      Note note = noteRepository.findByNum(num);
+    public Optional<NoteDto> get(Long num) {
+      // Note note = noteRepository.findByNum(num);
       // if (result.isPresent()) {
       //     return entityToDTO(result.get());
       // }
         
-      return null;
+      return noteRepository.findById(num).map(this::entityToDTO);
     }
 
     @Override
@@ -73,19 +73,17 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public List<NoteDto> listAll() {
-      return repository.findAll().stream().map(this::entityToDTO).toList();
+      return noteRepository.findAll().stream().map(this::entityToDTO).toList();
     }
 
     @Override
     public List<NoteDto> listByEmail(String email) {
-      // TODO Auto-generated method stub
-      return null;
+      return noteRepository.findByMemberEmail(email).stream().map(this::entityToDTO).toList();
     }
 
     @Override
     public List<NoteDto> listByMno(Long mno) {
-      // TODO Auto-generated method stub
-      return null;
+      return noteRepository.findByMemberMno(mno).stream().map(note -> entityToDTO(note)).collect(Collectors.toList());
     }
     
 
