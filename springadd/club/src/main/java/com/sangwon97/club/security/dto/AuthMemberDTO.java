@@ -51,7 +51,6 @@ public class AuthMemberDTO extends User implements OAuth2User{
    return attr;
   }
   public boolean getFromSocial() {
-    // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'getFromSocial'");
   }
   
