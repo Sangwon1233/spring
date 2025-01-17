@@ -58,10 +58,10 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public void remove(Long num) {
-        if (noteRepository.findById(num).isPresent()) {
-            noteRepository.deleteById(num);    
-        }
+    public int remove(Long num) {
+        noteRepository.deleteById(num);    
+        return 1;
+
     }
 
     
@@ -71,14 +71,19 @@ public class NoteServiceImpl implements NoteService {
       return noteList.stream().map(note -> entityToDTO(note)).collect(Collectors.toList());
     }
 
-    @Override
-    public List<NoteDto> listAll() {
-      return noteRepository.findAll().stream().map(this::entityToDTO).toList();
-    }
+    // @Override
+    // public List<NoteDto> listAll() {
+    //   return noteRepository.findAll().stream().map(this::entityToDTO).toList();
+    // }
 
     @Override
     public List<NoteDto> listByEmail(String email) {
-      return noteRepository.findByMemberEmail(email).stream().map(this::entityToDTO).toList();
+      noteRepository.findNotesBy(email).stream().map(o -> {
+        NoteDto dto = entityToDTO((Note)o[0]);
+        dto.setLikeCnt((Long)o[1]);
+        dto.setAttachCnt((Long)o[2]);
+        return dto; 
+      }).toList();
     }
 
     @Override
@@ -86,6 +91,15 @@ public class NoteServiceImpl implements NoteService {
       return noteRepository.findByMemberMno(mno).stream().map(note -> entityToDTO(note)).collect(Collectors.toList());
     }
     
+    @Override
+    public List<NoteDto> listAll() {
+     return noteRepository.findNotes(writerEmail).stream().map(o -> {
+        NoteDto dto = entityToDTO((Note)o[0]);
+        dto.setLikeCnt((Long)o[1]);
+        dto.setAttachCnt((Long)o[2]);
+        return dto; 
+      }).toList();
+    }
 
 }
   

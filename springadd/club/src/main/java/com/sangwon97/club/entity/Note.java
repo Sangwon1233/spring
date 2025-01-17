@@ -26,7 +26,7 @@ import lombok.Builder.Default;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude="member")
+@ToString(exclude={"member","attachs"})
 public class Note extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  

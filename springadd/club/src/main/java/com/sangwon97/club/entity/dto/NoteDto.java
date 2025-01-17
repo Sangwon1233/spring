@@ -26,6 +26,9 @@ public class NoteDto {
   private String writerEmail;
   private Long mno;
   private LocalDateTime regDate, modDate;
+
+  private long likeCnt;
+  private long attachCnt;
   
   @Default
   private List<Attach> attachDTOs = new ArrayList<>();

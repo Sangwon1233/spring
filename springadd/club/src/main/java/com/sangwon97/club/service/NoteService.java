@@ -21,7 +21,7 @@ public interface NoteService{
 
   void modify(NoteDto noteDto);
   
-  void remove(Long num);
+  int remove(Long num);
 
   List<NoteDto> getAllWithwriter(String writerEmail);
 
